@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
 
-from .forms import LoginForm
+from .forms import LoginForm, UserRegistrationForm
 
 
 # Create your views here.
@@ -31,3 +31,16 @@ def user_login(request):
 @login_required
 def dashboard(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])  # User model method for saving password more secure
+            new_user.save()
+            return render(request, 'account/register_done.html', {'new_user': new_user})
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'account/register.html', {'form': form})
