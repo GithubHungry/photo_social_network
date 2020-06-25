@@ -117,6 +117,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'account:dashboard'  # If success login -> redirect
-LOGIN_URL = 'account:login'  # If @login_required -> redirect
-LOGOUT_URL = 'account:logout'  # After logout -> redirect
+LOGIN_REDIRECT_URL = 'dashboard'  # If success login -> redirect
+LOGIN_URL = 'login'  # If @login_required -> redirect
+LOGOUT_URL = 'logout'  # After logout -> redirect
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
