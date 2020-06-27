@@ -41,7 +41,6 @@ def register(request):
         if form.is_valid():
             new_user = form.save(commit=False)
             new_user.set_password(form.cleaned_data['password'])  # User model method for saving password more secure
-            # Profile.objects.create(user=new_user)
             new_user.save()
             return render(request, 'account/register_done.html', {'new_user': new_user})
     else:
