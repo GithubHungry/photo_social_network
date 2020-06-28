@@ -3,10 +3,12 @@ from django.contrib.auth import views as auth_views
 
 from . import views
 
-
 urlpatterns = [
     # path('login/', views.user_login, name='login'),
     path('', views.dashboard, name='dashboard'),
+    path('list/', views.user_list, name='user_list'),
+    path('users/follow', views.user_follow, name='user_follow'),
+    path('detail/<str:username>', views.user_detail, name='user_detail'),
     path('register/', views.register, name='register'),
     path('edit/', views.edit, name='edit'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
