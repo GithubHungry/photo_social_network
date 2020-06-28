@@ -31,7 +31,10 @@ class Contact(models.Model):
 
 
 User.add_to_class('following',
-                  models.ManyToManyField('self', through=Contact, related_name='followers', symmetrical=False))
+                  models.ManyToManyField('self',
+                                         through=Contact,
+                                         related_name='followers',
+                                         symmetrical=False))
 
 
 @receiver(post_save, sender=User)
